@@ -3,7 +3,7 @@ import { projects } from '../data/projects';
 
 export default function ProjectList() {
   const { category } = useParams<{ category: string }>();
-  const list = (category && projects[category]) || [];
+  const list = category ? projects[category] ?? [] : [];
 
   return (
     <section>

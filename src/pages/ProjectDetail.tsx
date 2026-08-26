@@ -3,7 +3,8 @@ import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
   const { category, slug } = useParams<{ category: string; slug: string }>();
-  const project = (category && projects[category])?.find((p) => p.slug === slug);
+  const list = category ? projects[category] : undefined;
+  const project = list?.find((p) => p.slug === slug);
 
   if (!project) return <p>Project not found.</p>;
 
