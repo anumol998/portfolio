@@ -1,0 +1,277 @@
+/* ---------- Reset & base ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #1a1a1a;
+  background: #fafafa;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Navbar ---------- */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1.25rem 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #888;
+}
+
+/* ---------- Shared section spacing ---------- */
+section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+section h2 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+/* ---------- Home page ---------- */
+.home-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.home-hero p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: #444;
+}
+
+.home-hero .cta-link {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.home-hero .cta-link:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ---------- Projects (categories grid) ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.category-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 1 / 1;
+  background: #ddd;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+.category-card h3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.75rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ---------- Project list (under a category) ---------- */
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.project-card {
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-card .project-info {
+  padding: 1rem;
+}
+
+.project-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.project-card p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* ---------- Project detail ---------- */
+.project-detail img.main-image {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.project-detail h1 {
+  margin-bottom: 0.75rem;
+}
+
+.project-detail p {
+  max-width: 700px;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.drawings-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.drawings-gallery img {
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+/* ---------- About page ---------- */
+.about-content {
+  max-width: 700px;
+}
+
+.about-content img.profile-photo {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1.5rem;
+}
+
+.about-content p {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* ---------- Contact page ---------- */
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-size: 1.05rem;
+}
+
+.contact-list span {
+  color: #666;
+  display: inline-block;
+  width: 90px;
+  font-weight: 600;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  nav {
+    gap: 1.25rem;
+    padding: 1rem 0.75rem;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+  }
+
+  section {
+    padding: 1.75rem 1rem 3rem;
+  }
+
+  section h1 {
+    font-size: 1.5rem;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    aspect-ratio: 4 / 3;
+  }
+
+  .drawings-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .about-content img.profile-photo {
+    width: 120px;
+    height: 120px;
+  }
+}
