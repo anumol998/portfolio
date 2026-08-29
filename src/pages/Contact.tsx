@@ -1,17 +1,44 @@
-
-import { contactInfo } from '../data/projects';
+import { useEffect, useState } from 'react';
+import { fetchContactInfo, type ContactInfo } from '../lib/api';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 import './Contact.css';
 
 export default function Contact() {
+  const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    fetchContactInfo()
+      .then((data) => {
+        if (cancelled) return;
+        setContactInfo(data);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setError(err instanceof Error ? err.message : 'Failed to load contact info');
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (loading) return <p>Loading…</p>;
+  if (error || !contactInfo) return <p>Something went wrong{error ? `: ${error}` : ''}.</p>;
+
   return (
     <div className="contact-page">
       <h1 className="contact-heading">CONTACT</h1>
 
       <div className="contact-card">
         <div className="contact-info">
-
           {/* Email */}
           <a
             href={`mailto:${contactInfo.email}`}
@@ -71,7 +98,6 @@ export default function Contact() {
               })}
             </div>
           )}
-
         </div>
       </div>
     </div>

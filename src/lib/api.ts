@@ -1,13 +1,18 @@
 // src/lib/api.ts
 //
 // Drop-in replacement for the hardcoded exports in data/projects.ts.
-// The TS interfaces (SiteInfo, AboutInfo, Category, Project, ContactInfo, ...)
-// stay exactly the same — only how you GET the data changes.
+// The TS interfaces (SiteInfo, ProjectInfo, AboutInfo, Category, Project,
+// ContactInfo, ...) stay exactly the same — only how you GET the data changes.
 
 export interface SiteInfo {
   name: string;
   title: string;
   intro: string;
+}
+
+export interface ProjectInfo {
+  title: string;
+  description: string[];
 }
 
 export interface TimelineEntry {
@@ -84,6 +89,10 @@ export function fetchSiteInfo(): Promise<SiteInfo> {
   return getJSON<SiteInfo>("/api/portfolio/site-info/");
 }
 
+export function fetchProjectInfo(): Promise<ProjectInfo> {
+  return getJSON<ProjectInfo>("/api/portfolio/project-info/");
+}
+
 export function fetchAboutInfo(): Promise<AboutInfo> {
   return getJSON<AboutInfo>("/api/portfolio/about/");
 }
@@ -94,7 +103,7 @@ export function fetchCategories(): Promise<Category[]> {
 
 // Matches the old `projects: Record<string, Project[]>` shape exactly.
 export function fetchProjects(): Promise<Record<string, Project[]>> {
-  return getJSON<Record<string, Project[]>>("/api/projects/");
+  return getJSON<Record<string, Project[]>>("/api/portfolio/projects/");
 }
 
 export function fetchProject(categorySlug: string, projectSlug: string): Promise<Project> {

@@ -1,15 +1,42 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { projects } from '../data/projects';
+import { fetchProject, type Project } from '../lib/api';
 import './ProjectDetail.css';
 
 export default function ProjectDetail() {
   const { category, slug } = useParams<{ category: string; slug: string }>();
-  const list = category ? projects[category] : undefined;
-  const project = list?.find((p) => p.slug === slug);
+
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [zoomed, setZoomed] = useState(false);
+
+  useEffect(() => {
+    if (!category || !slug) return;
+    let cancelled = false;
+
+    setLoading(true);
+    setError(null);
+
+    fetchProject(category, slug)
+      .then((data) => {
+        if (cancelled) return;
+        setProject(data);
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setError(err instanceof Error ? err.message : 'Failed to load project');
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [category, slug]);
 
   const closeLightbox = useCallback(() => {
     setLightboxIndex(null);
@@ -43,6 +70,8 @@ export default function ProjectDetail() {
     };
   }, [lightboxIndex, closeLightbox, showPrev, showNext]);
 
+  if (loading) return <p>Loading…</p>;
+  if (error) return <p>Something went wrong: {error}</p>;
   if (!project) return <p>Project not found.</p>;
 
   const details = [
