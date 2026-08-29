@@ -5,8 +5,15 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Betania+Patmos&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+
 body {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
   color: #1a1a1a;
   background: #fafafa;
   line-height: 1.6;
@@ -29,7 +36,6 @@ nav {
   gap: 2rem;
   padding: 1.25rem 1rem;
   background: #fff;
-  border-bottom: 1px solid #e5e5e5;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -73,74 +79,7 @@ section h2 {
   margin-bottom: 1.5rem;
 }
 
-/* ---------- Home page ---------- */
-.home-hero {
-  text-align: center;
-  padding: 3rem 1rem;
-}
 
-.home-hero p {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  color: #444;
-}
-
-.home-hero .cta-link {
-  display: inline-block;
-  padding: 0.75rem 1.75rem;
-  border: 1px solid #1a1a1a;
-  border-radius: 2px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.home-hero .cta-link:hover {
-  background: #1a1a1a;
-  color: #fff;
-}
-
-/* ---------- Projects (categories grid) ---------- */
-.category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-
-.category-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-  aspect-ratio: 1 / 1;
-  background: #ddd;
-}
-
-.category-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.category-card:hover img {
-  transform: scale(1.05);
-}
-
-.category-card h3 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.75rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
 
 /* ---------- Project list (under a category) ---------- */
 .project-list {
@@ -177,67 +116,9 @@ section h2 {
   color: #666;
 }
 
-/* ---------- Project detail ---------- */
-.project-detail img.main-image {
-  width: 100%;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-}
 
-.project-detail h1 {
-  margin-bottom: 0.75rem;
-}
 
-.project-detail p {
-  max-width: 700px;
-  color: #333;
-  margin-bottom: 2rem;
-}
 
-.drawings-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-}
-
-.drawings-gallery img {
-  border-radius: 4px;
-  border: 1px solid #eee;
-}
-
-/* ---------- About page ---------- */
-.about-content {
-  max-width: 700px;
-}
-
-.about-content img.profile-photo {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1.5rem;
-}
-
-.about-content p {
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-/* ---------- Contact page ---------- */
-.contact-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  font-size: 1.05rem;
-}
-
-.contact-list span {
-  color: #666;
-  display: inline-block;
-  width: 90px;
-  font-weight: 600;
-}
 
 /* ---------- Mobile ---------- */
 @media (max-width: 640px) {
@@ -258,20 +139,24 @@ section h2 {
     font-size: 1.5rem;
   }
 
-  .category-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .category-card {
-    aspect-ratio: 4 / 3;
-  }
 
-  .drawings-gallery {
-    grid-template-columns: 1fr;
-  }
 
-  .about-content img.profile-photo {
-    width: 120px;
-    height: 120px;
-  }
+
+}
+
+
+/* ---------- Footer ---------- */
+.site-footer {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid #e5e5e5;
+}
+
+.site-footer p {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: #888;
 }

@@ -1,0 +1,150 @@
+.about-page {
+  width: 100%;
+  background: #fff;
+}
+
+/* ---------- Intro block ---------- */
+.about-intro {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.about-intro__text {
+  max-width: 460px;
+  flex: 1 1 360px;
+}
+
+.about-intro__greeting {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 1.25rem;
+  text-transform: none;
+}
+
+.about-intro__text p {
+  font-size: 0.95rem;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.about-intro__text p strong {
+  font-weight: 700;
+}
+
+.about-intro__photo {
+  flex: 0 0 auto;
+  width: 220px;
+}
+
+.about-intro__photo img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* ---------- Skills ---------- */
+.about-skills {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  text-align: center;
+}
+
+.about-skills h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.about-skills ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.about-skills li {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  color: #444;
+}
+
+/* ---------- Experience / Education (CV) ---------- */
+.about-cv {
+  border-top: 1px solid #e5e5e5;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  text-align: center;
+}
+
+.about-cv__column h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 1.75rem;
+}
+
+.about-cv__entry {
+  margin-bottom: 1.5rem;
+}
+
+.about-cv__period {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+}
+
+.about-cv__place {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.about-cv__role {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 720px) {
+  .about-intro {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.25rem 2rem;
+  }
+
+  .about-intro__text {
+    max-width: 100%;
+  }
+
+  .about-cv {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}

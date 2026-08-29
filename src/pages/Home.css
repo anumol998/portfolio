@@ -1,0 +1,32 @@
+/* ---------- Home page ---------- */
+.home-hero {
+  background: #fff;
+  min-height: 50vh;
+  max-width: none;   /* add this line — overrides the generic `section` rule */
+  width: 100%;
+  text-align: center;
+  padding: 60px 0 0;
+}
+
+.home-hero p {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: #444;
+}
+
+.home-hero .cta-link {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.home-hero .cta-link:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
