@@ -20,7 +20,7 @@ export default function ProjectSlider() {
   const dragStartXRef = useRef(0);
   const dragOffsetRef = useRef(0);
   const movedRef = useRef(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const navigate = useNavigate();
 
   const measure = useCallback(() => {
@@ -106,34 +106,71 @@ export default function ProjectSlider() {
     navigate('/projects');
   };
 
+  // --- manual arrow controls ---
+  const goPrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    clearTimeout(timeoutRef.current);
+    setWithTransition(true);
+    setIndex((i) => Math.max(0, i - 1));
+    scheduleNext();
+  };
+
+  const goNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    clearTimeout(timeoutRef.current);
+    setWithTransition(true);
+    setIndex((i) => i + 1);
+    scheduleNext();
+  };
+
   return (
-    <div className="project-slider">
-      <div
-        ref={trackRef}
-        className="project-slider__track"
-        style={{
-          transform: `translateX(${-currentOffset()}px)`,
-          transition: withTransition
-            ? `transform ${TRANSITION_MS}ms cubic-bezier(0.65, 0, 0.35, 1)`
-            : 'none',
-        }}
-        onTransitionEnd={handleTransitionEnd}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerLeave={onPointerUp}
+    <div className="project-slider__wrapper">
+      <button
+        type="button"
+        className="project-slider__arrow project-slider__arrow--left"
+        onClick={goPrev}
+        aria-label="Previous project"
       >
-        {items.map((p, i) => (
-          <div
-            key={`${p.slug}-${i}`}
-            className="project-slider__item"
-            onClick={handleClick}
-          >
-            <img src={p.cover} alt={p.title} draggable={false} />
-            <span className="project-slider__title">{p.title}</span>
-          </div>
-        ))}
+        &#8249;
+      </button>
+
+      <div className="project-slider">
+        <div
+          ref={trackRef}
+          className="project-slider__track"
+          style={{
+            transform: `translateX(${-currentOffset()}px)`,
+            transition: withTransition
+              ? `transform ${TRANSITION_MS}ms cubic-bezier(0.65, 0, 0.35, 1)`
+              : 'none',
+          }}
+          onTransitionEnd={handleTransitionEnd}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerLeave={onPointerUp}
+        >
+          {items.map((p, i) => (
+            <div
+              key={`${p.slug}-${i}`}
+              className="project-slider__item"
+              onClick={handleClick}
+            >
+              <img src={p.cover} alt={p.title} draggable={false} />
+              <span className="project-slider__title">{p.title}</span>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <button
+        type="button"
+        className="project-slider__arrow project-slider__arrow--right"
+        onClick={goNext}
+        aria-label="Next project"
+      >
+        &#8250;
+      </button>
     </div>
   );
 }

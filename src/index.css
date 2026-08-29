@@ -1,4 +1,3 @@
-
 /* =========================================================
    GOTHAM FONT FAMILY
    ========================================================= */
@@ -194,47 +193,6 @@ section h2 {
   color: #666;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-}
-
-
-/* =========================================================
-   PROJECT LIST
-   ========================================================= */
-
-.project-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.75rem;
-}
-
-.project-card {
-  display: block;
-  border-radius: 4px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
-
-.project-card img {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-}
-
-.project-card .project-info {
-  padding: 1rem;
-}
-
-.project-card h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.project-card p {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: #666;
 }
 
 

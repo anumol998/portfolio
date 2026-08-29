@@ -18,6 +18,7 @@
 .about-intro__text {
   max-width: 460px;
   flex: 1 1 360px;
+  text-align: justify;
 }
 
 .about-intro__greeting {
@@ -51,39 +52,6 @@
   height: 280px;
   object-fit: cover;
   border-radius: 4px;
-}
-
-/* ---------- Skills ---------- */
-.about-skills {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 1.5rem 3rem;
-  text-align: center;
-}
-
-.about-skills h2 {
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.about-skills ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
-}
-
-.about-skills li {
-  font-size: 0.85rem;
-  padding: 0.4rem 0.9rem;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-  color: #444;
 }
 
 /* ---------- Experience / Education (CV) ---------- */
@@ -130,6 +98,98 @@
   color: #333;
 }
 
+/* ---------- Skills (now last, two columns, animated bars) ---------- */
+.about-skills {
+  border-top: 1px solid #e5e5e5;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+.about-skills h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.about-skills__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 3rem;
+}
+
+.skill-bar {
+  width: 100%;
+}
+
+.skill-bar__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.skill-bar__name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.skill-bar__percent {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.skill-bar__track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #eee;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-bar__fill {
+  height: 100%;
+  border-radius: 999px;
+  width: 0%;
+  transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle shimmer sweep while filling */
+.skill-bar__fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 720px) {
   .about-intro {
@@ -146,5 +206,10 @@
   .about-cv {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+
+  .about-skills__grid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
 }

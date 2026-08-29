@@ -12,11 +12,16 @@ export interface TimelineEntry {
   role?: string;
 }
 
+export interface Skill {
+  name: string;
+  level: number; // 0-100
+}
+
 export interface AboutInfo {
   greeting: string;
   photo: string;
   paragraphs: string[];
-  skills: string[];
+  skills: Skill[];
   experience: TimelineEntry[];
   education: TimelineEntry[];
 }
@@ -54,7 +59,7 @@ export interface ContactInfo {
   phones: string[];
   address: string;
   website?: string;
-  photo?: string;        // <-- new optional field
+  photo?: string;
   socials: SocialLink[];
 }
 
@@ -73,7 +78,13 @@ export const aboutInfo: AboutInfo = {
     "I'm Anumol T Regi, an architect based in Kerala, India. I trained as an architect in India, where I gained my degree and registration, and over the years I've built a portfolio spanning residential, interior, and commercial projects.",
     "Along the way, I've worked alongside talented architects and designers who have shaped my approach. Each project has strengthened my belief that good design should be both purposeful and humane.",
   ],
-  skills: ['AutoCAD', 'SketchUp', 'Revit', 'Lumion', 'Adobe Photoshop'],
+  skills: [
+    { name: 'AutoCAD', level: 90 },
+    { name: 'SketchUp', level: 85 },
+    { name: 'Revit', level: 75 },
+    { name: 'Lumion', level: 70 },
+    { name: 'Adobe Photoshop', level: 65 },
+  ],
   experience: [
     { period: '2023 NOV - PRESENT', place: 'Independent Practice, Kerala', role: 'Architect' },
     { period: '2020 DEC - 2023 OCT', place: 'DACglobal, Calicut, Kerala, India', role: 'Associate Architect' },
@@ -182,7 +193,7 @@ export const contactInfo: ContactInfo = {
   phones: ['+91 00000 00000'],
   address: 'Kerala, India',
   website: 'www.example.com',
-  photo: '/images/contact-photo.png',   // <-- path to image in public folder
+  photo: '/images/contact-photo.png',
   socials: [
     { label: 'Instagram', url: 'https://instagram.com/yourhandle' },
     { label: 'LinkedIn', url: 'https://linkedin.com/in/yourhandle' },

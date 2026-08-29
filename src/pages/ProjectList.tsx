@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
+import './ProjectList.css'
 
 export default function ProjectList() {
   const { category } = useParams<{ category: string }>();

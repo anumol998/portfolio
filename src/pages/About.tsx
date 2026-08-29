@@ -1,7 +1,33 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import { aboutInfo } from '../data/projects';
 import './About.css';
 
+const BAR_COLOR = '#8b5cf6'; // violet
+
 export default function About() {
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const skillsRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const node = skillsRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setSkillsVisible(true);
+          observer.disconnect(); // animate once
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="about-page">
       <div className="about-intro">
@@ -19,17 +45,6 @@ export default function About() {
           <img src={aboutInfo.photo} alt={aboutInfo.greeting} />
         </div>
       </div>
-
-      {aboutInfo.skills.length > 0 && (
-        <div className="about-skills">
-          <h2>Skills</h2>
-          <ul>
-            {aboutInfo.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       <div className="about-cv">
         <div className="about-cv__column">
@@ -53,6 +68,34 @@ export default function About() {
           ))}
         </div>
       </div>
+
+      {aboutInfo.skills.length > 0 && (
+        <div className="about-skills" ref={skillsRef}>
+          <h2>Skills</h2>
+          <div className="about-skills__grid">
+            {aboutInfo.skills.map((skill, i) => (
+              <div className="skill-bar" key={skill.name}>
+                <div className="skill-bar__head">
+                  <span className="skill-bar__name">{skill.name}</span>
+                  <span className="skill-bar__percent">
+                    {skillsVisible ? skill.level : 0}%
+                  </span>
+                </div>
+                <div className="skill-bar__track">
+                  <div
+                    className="skill-bar__fill"
+                    style={{
+                      width: skillsVisible ? `${skill.level}%` : '0%',
+                      background: BAR_COLOR,
+                      transitionDelay: `${i * 0.12}s`,
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
