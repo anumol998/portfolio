@@ -1,19 +1,158 @@
-/* ---------- Reset & base ---------- */
+
+/* =========================================================
+   GOTHAM FONT FAMILY
+   ========================================================= */
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-XLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Book.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-Ultra.woff2") format("woff2");
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ---------- Gotham Italics ---------- */
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-ThinItalic.woff2") format("woff2");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-XLightItalic.woff2") format("woff2");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-BookItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-BlackItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham";
+  src: url("/fonts/gotham/Gotham-UltraItalic.woff2") format("woff2");
+  font-weight: 950;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+/* =========================================================
+   RESET & BASE
+   ========================================================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Betania+Patmos&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  font-family: "Quicksand", sans-serif;
-  font-weight: 300;
+  font-family: "Gotham", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   color: #1a1a1a;
   background: #fafafa;
   line-height: 1.6;
@@ -29,33 +168,11 @@ img {
   display: block;
 }
 
-/* ---------- Navbar ---------- */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1.25rem 1rem;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  flex-wrap: wrap;
-}
 
-nav a {
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #1a1a1a;
-  transition: color 0.2s ease;
-}
+/* =========================================================
+   SHARED SECTION SPACING
+   ========================================================= */
 
-nav a:hover {
-  color: #888;
-}
-
-/* ---------- Shared section spacing ---------- */
 section {
   max-width: 1100px;
   margin: 0 auto;
@@ -80,8 +197,10 @@ section h2 {
 }
 
 
+/* =========================================================
+   PROJECT LIST
+   ========================================================= */
 
-/* ---------- Project list (under a category) ---------- */
 .project-list {
   display: flex;
   flex-direction: column;
@@ -93,7 +212,7 @@ section h2 {
   border-radius: 4px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 }
 
 .project-card img {
@@ -108,45 +227,21 @@ section h2 {
 
 .project-card h3 {
   font-size: 1.1rem;
+  font-weight: 500;
   margin-bottom: 0.25rem;
 }
 
 .project-card p {
   font-size: 0.9rem;
+  font-weight: 400;
   color: #666;
 }
 
 
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
-
-
-/* ---------- Mobile ---------- */
-@media (max-width: 640px) {
-  nav {
-    gap: 1.25rem;
-    padding: 1rem 0.75rem;
-  }
-
-  nav a {
-    font-size: 0.8rem;
-  }
-
-  section {
-    padding: 1.75rem 1rem 3rem;
-  }
-
-  section h1 {
-    font-size: 1.5rem;
-  }
-
-
-
-
-
-}
-
-
-/* ---------- Footer ---------- */
 .site-footer {
   width: 100%;
   padding: 1.5rem 1rem;
@@ -157,6 +252,24 @@ section h2 {
 
 .site-footer p {
   font-size: 0.8rem;
+  font-weight: 400;
   letter-spacing: 0.05em;
   color: #888;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  section {
+    padding: 1.75rem 1rem 3rem;
+  }
+
+  section h1 {
+    font-size: 1.5rem;
+  }
+
 }

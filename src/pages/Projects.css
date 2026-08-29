@@ -35,7 +35,9 @@
 .category-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  gap: 1.5rem;          /* space between images */
+  padding: 0 1.5rem;    /* same space on left & right edges */
+  /* no max-width, no margin auto */
 }
 
 .category-card {
@@ -79,6 +81,7 @@
 @media (max-width: 720px) {
   .category-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem; /* Maintain gap on mobile */
   }
 
   .projects-intro {
