@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { aboutInfo } from '../data/projects';
+import { useFetch } from '../lib/useFetch';
+import { fetchAboutInfo } from '../lib/api';
 import './About.css';
 
 const BAR_COLOR = '#8b5cf6'; // violet
 
 export default function About() {
+  const { data: aboutInfo, loading, error } = useFetch(fetchAboutInfo);
+
   const [skillsVisible, setSkillsVisible] = useState(false);
   const skillsRef = useRef<HTMLDivElement | null>(null);
 
@@ -26,7 +29,10 @@ export default function About() {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [aboutInfo]); // re-attach once aboutInfo (and the skills section) actually renders
+
+  if (loading) return <div className="about-page">Loading…</div>;
+  if (error || !aboutInfo) return <div className="about-page">Couldn't load this page.</div>;
 
   return (
     <div className="about-page">

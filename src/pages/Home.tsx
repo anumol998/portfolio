@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 import ProjectSlider from '../components/ProjectSlider';
-import { siteInfo } from '../data/projects';
+import { useFetch } from '../lib/useFetch';
+import { fetchSiteInfo } from '../lib/api';
 import './Home.css';
 
 export default function Home() {
+  const { data: siteInfo, loading, error } = useFetch(fetchSiteInfo);
+
+  if (loading) return <section className="home-hero">Loading…</section>;
+  if (error || !siteInfo) return <section className="home-hero">Couldn't load this page.</section>;
+
   return (
     <>
       <section className="home-hero">
