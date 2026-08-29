@@ -2,10 +2,11 @@
 .home-hero {
   background: #fff;
   min-height: 50vh;
-  max-width: none;   /* add this line — overrides the generic `section` rule */
+  max-width: none;
   width: 100%;
   text-align: center;
-  padding: 60px 0 0;
+  padding: 60px 24px 0;   /* added horizontal padding */
+  box-sizing: border-box;
 }
 
 .home-hero p {
@@ -30,4 +31,14 @@
 .home-hero .cta-link:hover {
   background: #1a1a1a;
   color: #fff;
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    padding: 40px 20px 0;
+  }
+
+  .home-hero p {
+    text-align: left;   /* justify creates ugly gaps on narrow columns */
+  }
 }

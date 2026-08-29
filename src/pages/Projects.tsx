@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchProjectInfo, fetchCategories, type ProjectInfo, type Category } from '../lib/api';
+import SkeletonImage from '../components/SkeletonImage';
 import './Projects.css';
 
 export default function Projects() {
@@ -61,7 +62,7 @@ export default function Projects() {
       <div className="category-grid">
         {categories.map((cat) => (
           <Link key={cat.slug} to={`/projects/${cat.slug}`} className="category-card">
-            <img src={cat.image} alt={cat.title} />
+            <SkeletonImage src={cat.image} alt={cat.title} />
             <h3>{cat.title}</h3>
           </Link>
         ))}

@@ -1,17 +1,40 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { projects } from '../data/projects'; // adjust path to your data file
+import { fetchProjects, type Project } from '../lib/api';
+import SkeletonImage from './SkeletonImage';
 import './ProjectSlider.css';
-
-const baseItems = Object.values(projects).flat();
-// clone first few items at the end for seamless infinite loop
-const CLONE_COUNT = Math.min(3, baseItems.length);
-const items = [...baseItems, ...baseItems.slice(0, CLONE_COUNT)];
 
 const PAUSE_MS = 2600;
 const TRANSITION_MS = 900;
 
 export default function ProjectSlider() {
+  const [allProjects, setAllProjects] = useState<Project[]>([]);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchProjects()
+      .then((grouped) => {
+        if (cancelled) return;
+        setAllProjects(Object.values(grouped).flat());
+      })
+      .catch(() => {
+        if (!cancelled) setAllProjects([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLoaded(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const CLONE_COUNT = Math.min(3, allProjects.length);
+  const items = useMemo(
+    () => [...allProjects, ...allProjects.slice(0, CLONE_COUNT)],
+    [allProjects, CLONE_COUNT]
+  );
+
   const [index, setIndex] = useState(0);
   const [withTransition, setWithTransition] = useState(true);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -42,6 +65,7 @@ export default function ProjectSlider() {
   }, []);
 
   useEffect(() => {
+    if (!loaded || allProjects.length === 0) return;
     measure();
     window.addEventListener('resize', measure);
     scheduleNext();
@@ -49,11 +73,10 @@ export default function ProjectSlider() {
       window.removeEventListener('resize', measure);
       clearTimeout(timeoutRef.current);
     };
-  }, [measure, scheduleNext, index]);
+  }, [measure, scheduleNext, index, loaded, allProjects.length]);
 
-  // when we've scrolled past the real items into the clones, snap back invisibly
   const handleTransitionEnd = () => {
-    if (index >= baseItems.length) {
+    if (index >= allProjects.length) {
       setWithTransition(false);
       setIndex(0);
     }
@@ -61,7 +84,6 @@ export default function ProjectSlider() {
 
   useEffect(() => {
     if (!withTransition) {
-      // re-enable transition on next tick after the instant snap
       const id = requestAnimationFrame(() => setWithTransition(true));
       return () => cancelAnimationFrame(id);
     }
@@ -106,7 +128,6 @@ export default function ProjectSlider() {
     navigate('/projects');
   };
 
-  // --- manual arrow controls ---
   const goPrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     clearTimeout(timeoutRef.current);
@@ -122,6 +143,8 @@ export default function ProjectSlider() {
     setIndex((i) => i + 1);
     scheduleNext();
   };
+
+  if (!loaded || allProjects.length === 0) return null;
 
   return (
     <div className="project-slider__wrapper">
@@ -156,7 +179,7 @@ export default function ProjectSlider() {
               className="project-slider__item"
               onClick={handleClick}
             >
-              <img src={p.cover} alt={p.title} draggable={false} />
+              <SkeletonImage src={p.cover} alt={p.title} draggable={false} />
               <span className="project-slider__title">{p.title}</span>
             </div>
           ))}

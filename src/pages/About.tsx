@@ -1,8 +1,7 @@
-'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import { useFetch } from '../lib/useFetch';
 import { fetchAboutInfo } from '../lib/api';
+import SkeletonImage from '../components/SkeletonImage';
 import './About.css';
 
 const BAR_COLOR = '#8b5cf6'; // violet
@@ -48,7 +47,7 @@ export default function About() {
           ))}
         </div>
         <div className="about-intro__photo">
-          <img src={aboutInfo.photo} alt={aboutInfo.greeting} />
+          <SkeletonImage src={aboutInfo.photo} alt={aboutInfo.greeting} />
         </div>
       </div>
 

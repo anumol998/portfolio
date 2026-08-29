@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchProject, type Project } from '../lib/api';
+import SkeletonImage from '../components/SkeletonImage';
 import './ProjectDetail.css';
 
 export default function ProjectDetail() {
@@ -87,7 +88,7 @@ export default function ProjectDetail() {
   return (
     <div className="project-detail">
       <div className="project-detail__hero">
-        <img src={project.cover} alt={project.title} />
+        <SkeletonImage src={project.cover} alt={project.title} />
         <h1>{project.title}</h1>
       </div>
 
@@ -117,7 +118,7 @@ export default function ProjectDetail() {
                 key={i}
                 onClick={() => setLightboxIndex(i)}
               >
-                <img src={d.image} alt={d.caption} />
+                <SkeletonImage src={d.image} alt={d.caption} />
                 <figcaption>{d.caption}</figcaption>
               </figure>
             ))}
@@ -143,7 +144,7 @@ export default function ProjectDetail() {
           </button>
 
           <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-            <img
+            <SkeletonImage
               src={activeDrawing.image}
               alt={activeDrawing.caption}
               className={zoomed ? 'lightbox__image lightbox__image--zoomed' : 'lightbox__image'}
